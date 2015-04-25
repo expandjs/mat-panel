@@ -9,6 +9,7 @@
         <script>if (!('registerElement' in document && 'createShadowRoot' in HTMLElement.prototype && 'import' in document.createElement('link') && 'content' in document.createElement('template'))) document.write('<script src="/webcomponentsjs/webcomponents.js"><\/script>');</script>
 
         <link rel="import" href="../mat-demo/mat-demo.html">
+        <link rel="import" href="../mat-icon-button/mat-icon-button.html">
         <link rel="import" href="../mat-item/mat-item.html">
         <link rel="import" href="../mat-toolbar/mat-toolbar.html">
         <link rel="import" href="mat-panel.html">
@@ -30,16 +31,11 @@
                 <mat-demo label="mat-panel">
 
                     <h1>Default</h1>
-                    <mat-panel>
-                        <mat-toolbar background="indigo">Toolbar</mat-toolbar>
-                        <mat-item label="Item 1"></mat-item>
-                        <mat-item label="Item 2"></mat-item>
-                        <mat-item label="Item 3"></mat-item>
-                    </mat-panel>
-
-                    <h1>Raised</h1>
                     <mat-panel raised>
-                        <mat-toolbar background="indigo">Toolbar</mat-toolbar>
+                        <mat-toolbar background="indigo">
+                            <mat-icon-button icon="navigation:menu"></mat-icon-button>
+                            <span>Toolbar</span>
+                        </mat-toolbar>
                         <mat-item label="Item 1"></mat-item>
                         <mat-item label="Item 2"></mat-item>
                         <mat-item label="Item 3"></mat-item>
