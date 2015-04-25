@@ -1,0 +1,33 @@
+{
+  "name": "mat-panel",
+  "license": "BSD-3-Clause",
+  "version": "0.8.0",
+  "description": "This component is used to display a material panel.",
+  "authors": [
+    "Giuliano Rullo <g.rullo@expandjs.com>",
+    "Maurizio Stefàno <m.stefano@expandjs.com>",
+    "Robert Manolea <r.manolea@expandjs.com>"
+  ],
+  "main": [
+    "mat-panel-group.html",
+    "mat-panel.html"
+  ],
+  "keywords": [
+    "web-components"
+  ],
+  "dependencies": {
+    "expandjs": "ExpandJS/expandjs",
+    "mat-menu-button": "ExpandJS/mat-menu-button",
+    "mat-paper": "ExpandJS/mat-paper",
+    "mat-toolbar": "ExpandJS/mat-toolbar",
+    "xp-collapse": "ExpandJS/xp-collapse",
+    "xp-master-state": "ExpandJS/xp-master-state",
+    "xp-slave-state": "ExpandJS/xp-slave-state",
+    "polymer": "Polymer/polymer#^0.5"
+  },
+  "devDependencies": {
+    "mat-demo": "ExpandJS/mat-demo",
+    "mat-item": "ExpandJS/mat-item",
+    "mat-toolbar": "ExpandJS/mat-toolbar"
+  }
+}

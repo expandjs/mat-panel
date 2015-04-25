@@ -1,0 +1,244 @@
+<!--
+@license
+Copyright (c) 2015 The expand.js authors. All rights reserved.
+This code may only be used under the BSD style license found at https://expandjs.github.io/LICENSE.txt
+The complete set of authors may be found at https://expandjs.github.io/AUTHORS.txt
+The complete set of contributors may be found at https://expandjs.github.io/CONTRIBUTORS.txt
+-->
+
+<!--
+This component is used to display a material panel.
+It can be used in conjunction with mat-panel-group.
+
+@component mat-panel
+@description This component is used to display a material panel.
+
+@dependency polymer Polymer/polymer#^0.5
+@dependency expandjs ExpandJS/expandjs
+@dependency mat-menu-button ExpandJS/mat-menu-button
+@dependency mat-paper ExpandJS/mat-paper
+@dependency mat-toolbar ExpandJS/mat-toolbar
+@dependency xp-collapse ExpandJS/xp-collapse
+@dependency xp-slave-state ExpandJS/xp-slave-state
+
+@devDependency mat-demo ExpandJS/mat-demo
+@devDependency mat-item ExpandJS/mat-item
+@devDependency mat-toolbar ExpandJS/mat-toolbar
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../expandjs/expandjs.html">
+<link rel="import" href="../mat-menu-button/mat-menu-button.html">
+<link rel="import" href="../mat-paper/mat-paper.html">
+<link rel="import" href="../mat-toolbar/mat-toolbar.html">
+<link rel="import" href="../xp-collapse/xp-collapse.html">
+<link rel="import" href="../xp-slave-state/xp-slave-state.html">
+
+<polymer-element name="mat-panel" constructor="MATPanelElement" attributes="background collapsed collapsible raised scrolled">
+
+    <template>
+        <style>
+            :host {
+                display: block;
+                overflow: visible;
+                text-align: left;
+            }
+
+            :host #matPanelWrapper {
+                overflow: visible;
+            }
+
+            :host #matPanelHeader,
+            :host #matPanelBody {
+                position: relative;
+            }
+
+            :host #matPanelHeader {
+                z-index: 1;
+            }
+
+            :host [scroller] {
+                overflow-y: auto;
+            }
+        </style>
+        <template context="{{}}" is="xp-slave-state" master="{{group}}" masterTag="mat-panel-group"></template>
+        <mat-paper id="matPanelWrapper" background="{{background}}" z="{{raised ? 1 : 0}}">
+            <div id="matPanelHeader">
+                <content id="headerContent" select="[header]"></content>
+            </div>
+            <div id="matPanelBody">
+                <xp-collapse context="{{}}" id="matPanelScroller" backward="{{true}}" collapsed="{{collapsed}}" easing="cubic-bezier(.55, 0, .01, 1)" locked="{{!collapsible}}" on-scroll="{{handleScroll}}">
+                    <content id="bodyContent"></content>
+                </xp-collapse>
+            </div>
+        </mat-paper>
+    </template>
+
+    <script>
+        XPComponent({
+
+            /**
+             * Collapses the panel.
+             *
+             * @method collapse
+             * @returns {Element}
+             */
+            collapse: function () {
+                var self = this;
+                self.$.matPanelScroller.collapse();
+                return self;
+            },
+
+            /**
+             * Expands the panel.
+             *
+             * @method expand
+             * @returns {Element}
+             */
+            expand: function () {
+                var self = this;
+                self.$.matPanelScroller.expand();
+                return self;
+            },
+
+            /**
+             * Toggles the collapsed state.
+             *
+             * @method toggle
+             * @returns {Element}
+             */
+            toggle: function () {
+                var self = this;
+                self.$.matPanelScroller.toggle();
+                return self;
+            },
+
+            /*********************************************************************/
+
+            /**
+             * Refreshes the element.
+             *
+             * @method refresh
+             * @returns {Element}
+             * @private
+             */
+            refresh: function () {
+                var self = this;
+                XP.assign(self, {scroller: self.$.matPanelScroller});
+                XP.setStyle(self.$.matPanelHeader, 'top', 0);
+                return self;
+            },
+
+            /*********************************************************************/
+
+            // DELEGATES
+            eventDelegates: {
+                'xp-slave': 'handleSlave'
+            },
+
+            // PUBLISH
+            publish: {
+
+                /**
+                 * The paper's background color.
+                 *
+                 * @attribute background
+                 * @type string
+                 * @default ""
+                 */
+                background: {reflect: true, value: ''},
+
+                /**
+                 * If set to true, the panel is collapsed.
+                 *
+                 * @attribute collapsed
+                 * @type boolean
+                 * @default false
+                 */
+                collapsed: {reflect: true, value: false},
+
+                /**
+                 * If set to true, the panel is collapsible.
+                 *
+                 * @attribute collapsible
+                 * @type string
+                 * @default false
+                 */
+                collapsible: {reflect: true, value: false},
+
+                /**
+                 * The master group.
+                 *
+                 * @attribute group
+                 * @type Element
+                 * @readonly
+                 */
+                group: {reflect: false, value: null},
+
+                /**
+                 * If set to true, the panel is raised.
+                 *
+                 * @attribute raised
+                 * @type boolean
+                 * @default false
+                 */
+                raised: {reflect: true, value: false},
+
+                /**
+                 * The panel's scroll amount.
+                 *
+                 * @attribute scrolled
+                 * @type number
+                 * @default 0
+                 * @readonly
+                 */
+                scrolled: {reflect: false, value: 0}
+            },
+
+            /**
+             * The panel's scrolling element.
+             *
+             * @property scroller
+             * @type Element
+             * @readonly
+             */
+            scroller: null,
+
+            /*********************************************************************/
+
+            // OBSERVER
+            collapsedChanged: function (pre, post) {
+                if (!post && (!this.group || !this.group.autoCollapseDisabled)) { XP.invoke(XP.findSiblingElements(this, 'mat-panel'), 'collapse'); }
+            },
+
+            // OBSERVER
+            scrollerChanged: function (pre, post) {
+                if (arguments.length < 2) { return; }
+                if (pre) { XP.removeAttribute(pre, 'scroller'); }
+                if (post) { XP.addAttribute(post, 'scroller'); }
+            },
+
+            /*********************************************************************/
+
+            // LISTENER
+            ready: function() {
+                this.refresh();
+            },
+
+            /*********************************************************************/
+
+            // HANDLER
+            handleScroll: function () {
+                this.scrolled = this.scroller.scrollTop;
+            },
+
+            // HANDLER
+            handleSlave: function (event) {
+                var self = this;
+                if (self === event.detail.firer || event.detail.selector !== 'mat-panel-group' || !XP.matches(event.detail.firer, 'mat-panel')) { return; }
+                event.stopPropagation();
+            }
+        });
+    </script>
+
+</polymer-element>
