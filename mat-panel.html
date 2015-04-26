@@ -51,19 +51,13 @@ It can be used in conjunction with mat-panel-group.
                 overflow: visible;
             }
 
-            :host #matPanelBody,
-            :host #matPanelHeader, {
+            :host #matPanelHeader,
+            :host #matPanelBody {
                 position: relative;
             }
 
             :host #matPanelHeader {
-                -ms-flex-order: 2;
-                order: 2;
-            }
-
-            :host #matPanelHeader {
-                -ms-flex-order: 1;
-                order: 1;
+                z-index: 1;
             }
 
             :host [scroller] {
@@ -71,14 +65,14 @@ It can be used in conjunction with mat-panel-group.
             }
         </style>
         <template context="{{}}" is="xp-slave-state" master="{{group}}" masterTag="mat-panel-group"></template>
-        <mat-paper id="matPanelWrapper" background="{{background}}" z="{{raised ? 1 : 0}}" vertical layout>
-            <div id="matPanelBody">
-                <xp-collapse context="{{}}" id="matPanelScroller" backward="{{true}}" collapsed="{{collapsed}}" easing="cubic-bezier(.55, 0, .01, 1)" locked="{{!collapsible}}" on-scroll="{{handleScroll}}">
-                    <content id="bodyContent" select=":not([header])"></content>
-                </xp-collapse>
-            </div>
+        <mat-paper id="matPanelWrapper" background="{{background}}" z="{{raised ? 1 : 0}}">
             <div id="matPanelHeader">
                 <content id="headerContent" select="[header]"></content>
+            </div>
+            <div id="matPanelBody">
+                <xp-collapse context="{{}}" id="matPanelScroller" backward="{{true}}" collapsed="{{collapsed}}" easing="cubic-bezier(.55, 0, .01, 1)" locked="{{!collapsible}}" on-scroll="{{handleScroll}}">
+                    <content id="bodyContent"></content>
+                </xp-collapse>
             </div>
         </mat-paper>
     </template>
