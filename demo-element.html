@@ -1,0 +1,32 @@
+<link rel="import" href="../mat-demo/mat-demo.html">
+<link rel="import" href="../mat-icon-button/mat-icon-button.html">
+<link rel="import" href="../mat-item/mat-item.html">
+<link rel="import" href="../mat-toolbar/mat-toolbar.html">
+<link rel="import" href="mat-panel.html">
+
+<polymer-element name="mat-panel-demo" noscript>
+
+    <template>
+        <style>
+            mat-panel {
+                margin: auto;
+                max-width: 320px;
+            }
+        </style>
+        <mat-demo label="mat-panel">
+
+            <h1>Default</h1>
+            <mat-panel raised>
+                <mat-toolbar background="indigo">
+                    <mat-icon-button icon="navigation:menu"></mat-icon-button>
+                    <span>Toolbar</span>
+                </mat-toolbar>
+                <mat-item label="Item 1"></mat-item>
+                <mat-item label="Item 2"></mat-item>
+                <mat-item label="Item 3"></mat-item>
+            </mat-panel>
+
+        </mat-demo>
+    </template>
+
+</polymer-element>
