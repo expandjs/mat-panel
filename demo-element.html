@@ -8,15 +8,15 @@
 
     <template>
         <style>
-            mat-panel {
+            :host .demo-container {
                 margin: auto;
                 max-width: 320px;
             }
         </style>
         <mat-demo label="mat-panel">
 
-            <div class="title">Default</div>
-            <mat-panel raised>
+            <div class="demo-title">Default</div>
+            <mat-panel class="demo-container" raised>
                 <mat-toolbar background="indigo">
                     <mat-icon-button icon="navigation:menu"></mat-icon-button>
                     <span>Toolbar</span>
