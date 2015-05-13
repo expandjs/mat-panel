@@ -48,10 +48,6 @@ It can be used in conjunction with mat-panel-group.
                 text-align: left;
             }
 
-            :host #matPanelWrapper {
-                overflow: visible;
-            }
-
             :host #matPanelHeader,
             :host #matPanelBody {
                 position: relative;
@@ -210,17 +206,17 @@ It can be used in conjunction with mat-panel-group.
                  * @default 0
                  * @readonly
                  */
-                scrolled: {reflect: false, value: 0}
-            },
+                scrolled: {reflect: false, value: 0},
 
-            /**
-             * The panel's scrolling element.
-             *
-             * @property scroller
-             * @type Element
-             * @readonly
-             */
-            scroller: null,
+                /**
+                 * The panel's scrolling element.
+                 *
+                 * @attribute scroller
+                 * @type Element
+                 * @readonly
+                 */
+                scroller: {reflect: false, value: null}
+            },
 
             /*********************************************************************/
 
