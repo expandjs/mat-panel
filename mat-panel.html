@@ -248,9 +248,7 @@ It can be used in conjunction with mat-panel-group.
 
             // HANDLER
             handleSlave: function (event) {
-                var self = this;
-                if (self === event.detail.firer || event.detail.selector !== 'mat-panel-group' || !XP.matches(event.detail.firer, 'mat-panel')) { return; }
-                event.stopPropagation();
+                if (this !== event.detail.firer && event.detail.masterTag === 'mat-panel-group' && XP.matches(event.detail.firer, 'mat-panel')) { event.stopPropagation(); }
             }
         });
     </script>
