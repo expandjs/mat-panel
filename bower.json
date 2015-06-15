@@ -25,19 +25,19 @@
     "**/.*"
   ],
   "dependencies": {
-    "expandjs": "ExpandJS/expandjs",
-    "mat-menu-button": "ExpandJS/mat-menu-button",
-    "mat-paper": "ExpandJS/mat-paper",
-    "mat-toolbar": "ExpandJS/mat-toolbar",
-    "xp-collapse": "ExpandJS/xp-collapse",
-    "xp-master-state": "ExpandJS/xp-master-state",
-    "xp-slave-state": "ExpandJS/xp-slave-state",
+    "expandjs": "ExpandJS/expandjs#alpha#alpha",
+    "mat-menu-button": "ExpandJS/mat-menu-button#alpha",
+    "mat-paper": "ExpandJS/mat-paper#alpha",
+    "mat-toolbar": "ExpandJS/mat-toolbar#alpha",
+    "xp-collapse": "ExpandJS/xp-collapse#alpha",
+    "xp-master-state": "ExpandJS/xp-master-state#alpha",
+    "xp-slave-state": "ExpandJS/xp-slave-state#alpha",
     "polymer": "Polymer/polymer#^0.5"
   },
   "devDependencies": {
-    "mat-demo": "ExpandJS/mat-demo",
-    "mat-icon-button": "ExpandJS/mat-icon-button",
-    "mat-item": "ExpandJS/mat-item",
-    "mat-toolbar": "ExpandJS/mat-toolbar"
+    "mat-demo": "ExpandJS/mat-demo#alpha",
+    "mat-icon-button": "ExpandJS/mat-icon-button#alpha",
+    "mat-item": "ExpandJS/mat-item#alpha",
+    "mat-toolbar": "ExpandJS/mat-toolbar#alpha"
   }
 }
