@@ -1,0 +1,41 @@
+<link rel="import" href="../mat-demo/mat-demo.html">
+<link rel="import" href="../mat-icon-button/mat-icon-button.html">
+<link rel="import" href="../mat-item/mat-item.html">
+<link rel="import" href="../mat-toolbar/mat-toolbar.html">
+<link rel="import" href="mat-panel.html">
+
+<dom-module id="mat-panel-demo">
+
+    <style>
+        :host .demo-container {
+            margin: auto;
+            max-width: 320px;
+        }
+    </style>
+
+    <template>
+        <mat-demo label="mat-panel">
+
+            <div class="demo-title">Default</div>
+            <mat-panel class="demo-container" raised>
+                <mat-toolbar background="indigo">
+                    <mat-icon-button icon="navigation:menu"></mat-icon-button>
+                    <span>Toolbar</span>
+                </mat-toolbar>
+                <mat-item label="Item 1"></mat-item>
+                <mat-item label="Item 2"></mat-item>
+                <mat-item label="Item 3"></mat-item>
+            </mat-panel>
+
+        </mat-demo>
+    </template>
+
+    <script>
+        Polymer({
+
+            // ELEMENT
+            is: 'mat-panel-demo'
+        });
+    </script>
+
+</dom-module>
