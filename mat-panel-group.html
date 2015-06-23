@@ -16,9 +16,9 @@ It must be used in conjunction with mat-panel.
 @group containers
 @homepage http://expandjs.com/elements/mat-panel-group
 
-@dependency polymer Polymer/polymer
-@dependency expandjs ExpandJS/expandjs
-@dependency xp-master-state ExpandJS/xp-master-state
+@dependency polymer Polymer/polymer#^1.0.4
+@dependency expandjs ExpandJS/expandjs#0.9.1
+@dependency xp-master-state ExpandJS/xp-master-state#0.9.1
 -->
 
 <link rel="import" href="../polymer/polymer.html">
@@ -36,7 +36,7 @@ It must be used in conjunction with mat-panel.
     </style>
 
     <template>
-        <xp-master-state id="xpMasterState" slaves="{{panels}}" slaveTag="mat-panel"></xp-master-state>
+        <template is="xp-master-state" id="xpMasterState" slaves="{{panels}}" slave-tag="mat-panel"></template>
         <content id="content"></content>
     </template>
 
