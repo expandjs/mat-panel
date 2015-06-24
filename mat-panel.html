@@ -69,7 +69,7 @@ It can be used in conjunction with mat-panel-group.
                 <content id="headerContent" select="[header]"></content>
             </div>
             <div id="matPanelBody">
-                <xp-collapse id="matPanelScroller" backward collapsed="{{collapsed}}" easing="cubic-bezier(0.55, 0, 0.01, 1)" on-scroll="_handleScroll">
+                <xp-collapse id="matPanelScroller" animatable="{{animatable}}" backward collapsed="{{collapsed}}" easing="cubic-bezier(0.55, 0, 0.01, 1)" on-scroll="_handleScroll">
                     <content id="bodyContent"></content>
                 </xp-collapse>
             </div>
@@ -157,6 +157,20 @@ It can be used in conjunction with mat-panel-group.
 
             // PROPERTIES
             properties: {
+
+                /**
+                 * If set to true, the animation can be executed.
+                 *
+                 * @attribute animatable
+                 * @type boolean
+                 * @default false
+                 * @notifies
+                 */
+                animatable: {
+                    notify: true,
+                    type: Boolean,
+                    value: false
+                },
 
                 /**
                  * The paper's background color.
