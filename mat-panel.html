@@ -15,20 +15,14 @@ It can be used in conjunction with mat-panel-group.
 @keywords material design, material panel, web app, html5, expandjs, web-components
 @group containers
 @homepage http://expandjs.com/elements/mat-panel
-@demo http://expandjs.com/demo/mat-panel
 
 @dependency polymer Polymer/polymer#^1.0.0
-@dependency expandjs ExpandJS/expandjs#0.9.1
-@dependency mat-menu-button ExpandJS/mat-menu-button#0.9.1
-@dependency mat-paper ExpandJS/mat-paper#0.9.1
-@dependency mat-toolbar ExpandJS/mat-toolbar#0.9.1
-@dependency xp-collapse ExpandJS/xp-collapse#0.9.1
-@dependency xp-slave-state ExpandJS/xp-slave-state#0.9.1
-
-@devDependency mat-demo ExpandJS/mat-demo#0.9.1
-@devDependency mat-icon-button ExpandJS/mat-icon-button#0.9.1
-@devDependency mat-item ExpandJS/mat-item#0.9.1
-@devDependency mat-toolbar ExpandJS/mat-toolbar#0.9.1
+@dependency expandjs ExpandJS/expandjs#0.9.2
+@dependency mat-menu-button ExpandJS/mat-menu-button#0.9.2
+@dependency mat-paper ExpandJS/mat-paper#0.9.2
+@dependency mat-toolbar ExpandJS/mat-toolbar#0.9.2
+@dependency xp-collapse ExpandJS/xp-collapse#0.9.2
+@dependency xp-slave-state ExpandJS/xp-slave-state#0.9.2
 -->
 
 <link rel="import" href="../polymer/polymer.html">
@@ -64,7 +58,7 @@ It can be used in conjunction with mat-panel-group.
 
     <template>
         <template is="xp-slave-state" master="{{group}}" master-tag="mat-panel-group"></template>
-        <mat-paper id="matPanelWrapper" background="[[background]]" z="[[_computeZ(raised)]]">
+        <mat-paper id="matPanelWrapper" background="[[background]]" theme="{{theme}}" z="[[_computeZ(raised)]]">
             <div id="matPanelHeader">
                 <content id="headerContent" select="[header]"></content>
             </div>
@@ -254,6 +248,18 @@ It can be used in conjunction with mat-panel-group.
                     observer: '_scrollerChanged',
                     readOnly: true,
                     value: null
+                },
+
+                /**
+                 * The paper's theme, used to apply the default foreground color.
+                 *
+                 * @attribute theme
+                 * @type String
+                 * @notifies
+                 */
+                theme: {
+                    notify: true,
+                    type: String
                 }
             },
 
