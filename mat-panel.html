@@ -58,7 +58,7 @@ It can be used in conjunction with mat-panel-group.
 
     <template>
         <template is="xp-slave-state" master="{{group}}" master-tag="mat-panel-group"></template>
-        <mat-paper id="matPanelWrapper" background="[[background]]" theme="{{theme}}" z="[[_computeZ(raised)]]">
+        <mat-paper id="matPanelWrapper" background="[[background]]" z="[[_computeZ(raised)]]">
             <div id="matPanelHeader">
                 <content id="headerContent" select="[header]"></content>
             </div>
@@ -248,18 +248,6 @@ It can be used in conjunction with mat-panel-group.
                     observer: '_scrollerChanged',
                     readOnly: true,
                     value: null
-                },
-
-                /**
-                 * The paper's theme, used to apply the default foreground color.
-                 *
-                 * @attribute theme
-                 * @type String
-                 * @notifies
-                 */
-                theme: {
-                    notify: true,
-                    type: String
                 }
             },
 
