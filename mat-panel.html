@@ -60,7 +60,7 @@ It can be used in conjunction with mat-panel-group.
         <template is="xp-slave-state" master="{{group}}" master-tag="mat-panel-group"></template>
         <mat-paper id="matPanelWrapper" background="[[background]]" z="[[_computeZ(raised)]]">
             <div id="matPanelHeader">
-                <content id="headerContent" select="[header]"></content>
+                <content id="headerContent" select='[header=""]'></content>
             </div>
             <div id="matPanelBody">
                 <xp-collapse id="matPanelScroller" animatable="{{animatable}}" backward collapsed="{{collapsed}}" easing="cubic-bezier(0.55, 0, 0.01, 1)" on-scroll="_handleScroll">
