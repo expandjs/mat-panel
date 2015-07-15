@@ -41,6 +41,7 @@ It can be used in conjunction with mat-panel-group.
             display: block;
             overflow: visible;
             text-align: left;
+            z-index: 0;
         }
 
         :host #matPanelHeader,
@@ -51,6 +52,10 @@ It can be used in conjunction with mat-panel-group.
 
         :host #matPanelHeader {
             z-index: 1;
+        }
+
+        :host #matPanelBody {
+            z-index: 0;
         }
 
         :host [scroller] {
@@ -66,7 +71,7 @@ It can be used in conjunction with mat-panel-group.
             </div>
             <div id="matPanelBody">
                 <xp-collapse id="matPanelScroller" animatable="{{animatable}}" backward collapsed="{{collapsed}}" easing="cubic-bezier(0.55, 0, 0.01, 1)" on-scroll="_handleScroll">
-                    <content id="bodyContent"></content>
+                    <content id="bodyContent" select=':not([header=""])'></content>
                 </xp-collapse>
             </div>
         </mat-paper>
