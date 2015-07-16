@@ -41,7 +41,10 @@ It can be used in conjunction with mat-panel-group.
             display: block;
             overflow: visible;
             text-align: left;
-            z-index: 0;
+        }
+
+        :host #matPanelWrapper {
+            @apply(--layout-vertical);
         }
 
         :host #matPanelHeader,
@@ -51,11 +54,15 @@ It can be used in conjunction with mat-panel-group.
         }
 
         :host #matPanelHeader {
-            z-index: 1;
+            -ms-flex-order: 1;
+            -webkit-order: 1;
+            order: 1;
         }
 
         :host #matPanelBody {
-            z-index: 0;
+            -ms-flex-order: 2;
+            -webkit-order: 2;
+            order: 2;
         }
 
         :host [scroller] {
@@ -66,13 +73,13 @@ It can be used in conjunction with mat-panel-group.
     <template>
         <template is="xp-slave-state" master="{{group}}" master-tag="mat-panel-group"></template>
         <mat-paper id="matPanelWrapper" background="[[background]]" z="[[_computeZ(raised)]]">
-            <div id="matPanelHeader">
-                <content id="headerContent" select='[header=""]'></content>
-            </div>
             <div id="matPanelBody">
                 <xp-collapse id="matPanelScroller" animatable="{{animatable}}" backward collapsed="{{collapsed}}" easing="cubic-bezier(0.55, 0, 0.01, 1)" on-scroll="_handleScroll">
                     <content id="bodyContent" select=':not([header=""])'></content>
                 </xp-collapse>
+            </div>
+            <div id="matPanelHeader">
+                <content id="headerContent" select='[header=""]'></content>
             </div>
         </mat-paper>
     </template>
