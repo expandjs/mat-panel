@@ -26,7 +26,6 @@
   ],
   "dependencies": {
     "expandjs": "ExpandJS/expandjs#0.9.5",
-    "mat-menu-button": "ExpandJS/mat-menu-button#0.9.5",
     "mat-paper": "ExpandJS/mat-paper#0.9.5",
     "mat-toolbar": "ExpandJS/mat-toolbar#0.9.5",
     "xp-collapse": "ExpandJS/xp-collapse#0.9.5",
