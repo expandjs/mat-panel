@@ -49,12 +49,14 @@ The panel's background color can be changed accordingly to the
 @homepage http://expandjs.com/elements/mat-panel
 @repository https://github.com/ExpandJS/mat-panel
 
+@behavior xp-slave-behavior /bower_components/xp-slave-behavior/xp-slave-behavior.html
+
 @dependency polymer Polymer/polymer#^1.0.0
-@dependency expandjs ExpandJS/expandjs#0.9.5
-@dependency mat-paper ExpandJS/mat-paper#0.9.5
-@dependency mat-toolbar ExpandJS/mat-toolbar#0.9.5
-@dependency xp-collapse ExpandJS/xp-collapse#0.9.5
-@dependency xp-slave-state ExpandJS/xp-slave-state#0.9.5
+@dependency expandjs ExpandJS/expandjs#0.9.6
+@dependency mat-paper ExpandJS/mat-paper#0.9.6
+@dependency mat-toolbar ExpandJS/mat-toolbar#0.9.6
+@dependency xp-collapse ExpandJS/xp-collapse#0.9.6
+@dependency xp-slave-behavior ExpandJS/xp-slave-behavior#0.9.6
 -->
 
 <link rel="import" href="../polymer/polymer.html">
@@ -62,7 +64,7 @@ The panel's background color can be changed accordingly to the
 <link rel="import" href="../mat-paper/mat-paper.html">
 <link rel="import" href="../mat-toolbar/mat-toolbar.html">
 <link rel="import" href="../xp-collapse/xp-collapse.html">
-<link rel="import" href="../xp-slave-state/xp-slave-state.html">
+<link rel="import" href="../xp-slave-behavior/xp-slave-behavior.html">
 
 <dom-module id="mat-panel">
 
@@ -101,7 +103,6 @@ The panel's background color can be changed accordingly to the
     </style>
 
     <template>
-        <template is="xp-slave-state" master="{{group}}" master-tag="mat-panel-group"></template>
         <mat-paper id="matPanelWrapper" background="[[background]]" z="[[_computeZ(raised)]]">
             <div id="matPanelBody">
                 <xp-collapse id="matPanelScroller" animatable="{{animatable}}" backward collapsed="{{collapsed}}" easing="cubic-bezier(0.55, 0, 0.01, 1)" on-scroll="_handleScroll">
@@ -119,6 +120,11 @@ The panel's background color can be changed accordingly to the
 
             // ELEMENT
             is: 'mat-panel',
+
+            // BEHAVIORS
+            behaviors: [
+                Polymer.XPSlaveBehavior
+            ],
 
             /*********************************************************************/
 
@@ -181,11 +187,22 @@ The panel's background color can be changed accordingly to the
                 return self;
             },
 
+            /**
+             * Returns the masters map.
+             *
+             * @method _setupMasters
+             * @returns {Object}
+             * @private
+             */
+            _setupMasters: function () {
+                return {group: 'mat-panel-group'};
+            },
+
             /*********************************************************************/
 
             // LISTENERS
             listeners: {
-                'xp-slave-state': '_handleSlave'
+                'xp-slave': '_handleSlave'
             },
 
             // OBSERVERS
@@ -247,6 +264,7 @@ The panel's background color can be changed accordingly to the
                  */
                 group: {
                     notify: true,
+                    readOnly: true,
                     value: null
                 },
 
@@ -331,7 +349,7 @@ The panel's background color can be changed accordingly to the
 
             // HANDLER
             _handleSlave: function (event) {
-                if (event.detail.firer !== this && event.detail.masterTag === 'mat-panel-group' && XP.matches(event.detail.firer, 'mat-panel')) { event.stopPropagation(); }
+                if (event.detail.firer !== this && event.detail.selector === 'mat-panel-group' && XP.matches(event.detail.firer, 'mat-panel')) { event.stopPropagation(); }
             }
         });
     </script>

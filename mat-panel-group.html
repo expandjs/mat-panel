@@ -36,14 +36,16 @@ If you want to open multiple panels at once, you can use `auto-collapse-disabled
 @homepage http://expandjs.com/elements/mat-panel-group
 @repository https://github.com/ExpandJS/mat-panel-group
 
+@behavior xp-master-behavior /bower_components/xp-master-behavior/xp-master-behavior.html
+
 @dependency polymer Polymer/polymer#^1.0.0
-@dependency expandjs ExpandJS/expandjs#0.9.5
-@dependency xp-master-state ExpandJS/xp-master-state#0.9.5
+@dependency expandjs ExpandJS/expandjs#0.9.6
+@dependency xp-master-behavior ExpandJS/xp-master-behavior#0.9.6
 -->
 
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../expandjs/expandjs.html">
-<link rel="import" href="../xp-master-state/xp-master-state.html">
+<link rel="import" href="../xp-master-behavior/xp-master-behavior.html">
 <link rel="import" href="mat-panel.html">
 
 <dom-module id="mat-panel-group">
@@ -56,7 +58,6 @@ If you want to open multiple panels at once, you can use `auto-collapse-disabled
     </style>
 
     <template>
-        <template is="xp-master-state" id="xpMasterState" slaves="{{panels}}" slave-tag="mat-panel"></template>
         <content id="content"></content>
     </template>
 
@@ -65,6 +66,24 @@ If you want to open multiple panels at once, you can use `auto-collapse-disabled
 
             // ELEMENT
             is: 'mat-panel-group',
+
+            // BEHAVIORS
+            behaviors: [
+                Polymer.XPMasterBehavior
+            ],
+
+            /*********************************************************************/
+
+            /**
+             * Returns the slaves map.
+             *
+             * @method _setupSlaves
+             * @returns {Object}
+             * @private
+             */
+            _setupSlaves: function () {
+                return {panels: 'mat-panel'};
+            },
 
             /*********************************************************************/
 
@@ -94,7 +113,9 @@ If you want to open multiple panels at once, you can use `auto-collapse-disabled
                  */
                 panels: {
                     notify: true,
-                    type: Array
+                    readOnly: true,
+                    type: Array,
+                    value: function () { return []; }
                 }
             }
         });
