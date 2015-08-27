@@ -68,41 +68,42 @@ The panel's background color can be changed accordingly to the
 
 <dom-module id="mat-panel">
 
-    <style>
-        :host {
-            display: block;
-            overflow: visible;
-            text-align: left;
-        }
-
-        :host #matPanelWrapper {
-            @apply(--layout-vertical);
-        }
-
-        :host #matPanelHeader,
-        :host #matPanelBody,
-        :host #matPanelScroller {
-            position: relative;
-        }
-
-        :host #matPanelHeader {
-            -ms-flex-order: 1;
-            -webkit-order: 1;
-            order: 1;
-        }
-
-        :host #matPanelBody {
-            -ms-flex-order: 2;
-            -webkit-order: 2;
-            order: 2;
-        }
-
-        :host [scroller] {
-            overflow-y: auto;
-        }
-    </style>
-
     <template>
+
+        <style>
+            :host {
+                display: block;
+                overflow: visible;
+                text-align: left;
+            }
+
+            :host #matPanelWrapper {
+                @apply(--layout-vertical);
+            }
+
+            :host #matPanelHeader,
+            :host #matPanelBody,
+            :host #matPanelScroller {
+                position: relative;
+            }
+
+            :host #matPanelHeader {
+                -ms-flex-order: 1;
+                -webkit-order: 1;
+                order: 1;
+            }
+
+            :host #matPanelBody {
+                -ms-flex-order: 2;
+                -webkit-order: 2;
+                order: 2;
+            }
+
+            :host [scroller] {
+                overflow-y: auto;
+            }
+        </style>
+
         <mat-paper id="matPanelWrapper" background="[[background]]" z="[[_computeZ(raised)]]">
             <div id="matPanelBody">
                 <xp-collapse id="matPanelScroller" animatable="{{animatable}}" backward collapsed="{{collapsed}}" easing="cubic-bezier(0.55, 0, 0.01, 1)" on-scroll="_handleScroll">
@@ -113,6 +114,7 @@ The panel's background color can be changed accordingly to the
                 <content id="headerContent" select='[header=""]'></content>
             </div>
         </mat-paper>
+
     </template>
 
     <script>
