@@ -7,9 +7,9 @@ The complete set of contributors may be found at https://expandjs.github.io/CONT
 -->
 
 <!--
-An element used to group multiple [mat-panel](http://expandjs.com/elements/mat-panel).
+A custom element used to group separate [Material Design panels](https://www.google.com/design/spec/layout/structure.html#structure-toolbars).
 
-By default, the `<mat-panel-group>` will keep only one panel open at a time.
+By default, the `mat-panel-group` will keep only one panel open at a time.
 
 ```html
 <mat-panel-group>
@@ -30,17 +30,18 @@ If you want to open multiple panels at once, you can use `auto-collapse-disabled
 ```
 
 @element mat-panel-group
-@description A custom element used to manage multiple Material Design panels as a group
-@keywords material design, material panel group, web app, html5, expandjs, web-components
+@description A custom element used to group separate Material Design panels
+@keywords material design, expandjs, web app, custom elements, web-components
 @group containers
+
 @homepage http://expandjs.com/elements/mat-panel-group
 @repository https://github.com/ExpandJS/mat-panel-group
 
 @behavior xp-master-behavior /bower_components/xp-master-behavior/xp-master-behavior.html
 
 @dependency polymer Polymer/polymer#^1.0.0
-@dependency expandjs ExpandJS/expandjs#0.9.11
-@dependency xp-master-behavior ExpandJS/xp-master-behavior#0.9.11
+@dependency expandjs ExpandJS/expandjs#0.10.0
+@dependency xp-master-behavior ExpandJS/xp-master-behavior#0.10.0
 -->
 
 <link rel="import" href="../polymer/polymer.html">
@@ -50,16 +51,15 @@ If you want to open multiple panels at once, you can use `auto-collapse-disabled
 
 <dom-module id="mat-panel-group">
 
-    <template>
+    <template strip-whitespace>
 
         <style>
             :host {
                 display: block;
-                overflow: visible;
             }
         </style>
 
-        <content id="content"></content>
+        <content></content>
 
     </template>
 
@@ -76,31 +76,17 @@ If you want to open multiple panels at once, you can use `auto-collapse-disabled
 
             /*********************************************************************/
 
-            /**
-             * Returns the slaves map.
-             *
-             * @method _setupSlaves
-             * @returns {Object}
-             * @private
-             */
-            _setupSlaves: function () {
-                return {panels: 'mat-panel'};
-            },
-
-            /*********************************************************************/
-
             // PROPERTIES
             properties: {
 
                 /**
-                 * If set to true, a panel expansion wont collapse the siblings.
+                 * If set to true, when a panel expands the siblings wont collapse.
                  *
                  * @attribute auto-collapse-disabled
                  * @type boolean
                  * @default false
                  */
                 autoCollapseDisabled: {
-                    reflectToAttribute: true,
                     type: Boolean,
                     value: false
                 },
@@ -116,9 +102,24 @@ If you want to open multiple panels at once, you can use `auto-collapse-disabled
                 panels: {
                     notify: true,
                     readOnly: true,
-                    type: Array,
                     value: function () { return []; }
                 }
+            },
+
+            /*********************************************************************/
+
+            // LISTENER
+            created: function () {
+
+                // Classifying
+                this.classList.add('panels');
+            },
+
+            // LISTENER
+            ready: function () {
+
+                // Mapping
+                this.slavesMap.panels = '.panel';
             }
         });
     </script>
